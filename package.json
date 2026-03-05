@@ -4,8 +4,8 @@
   "description": "OpenAI-compatible API server",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "start": "tsx src/server.ts"
+    "d": "pnpm i && pnpm dev",
+    "dev": "tsx watch src/server.ts"
   },
   "keywords": [],
   "author": "",

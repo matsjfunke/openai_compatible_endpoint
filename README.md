@@ -2,55 +2,41 @@
 
 A minimal Node.js server that implements the OpenAI REST API shape.
 
-## Setup
-
-```bash
-pnpm install
-```
-
 ## Run
 
 ```bash
-# Development (auto-reload)
-pnpm dev
-
-# Production
-pnpm start
+pnpm d
 ```
 
 ## Endpoints
 
-### `GET /v1/models`
+### `POST /chat/completions`
 
-Returns the list of available models.
-
-```bash
-curl http://localhost:3000/v1/models
-```
-
-### `POST /v1/chat/completions`
-
-Accepts an OpenAI-style chat completion request.
+Accepts an OpenAI-style chat completion request. Only the model `demo-nemo` is accepted — all others return a `404`.
 
 ```bash
-# Non-streaming
-curl http://localhost:3000/v1/chat/completions \
+# Non-streaming only for the test button in Langdock
+curl http://localhost:3333/chat/completions \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <your-token>" \
   -d '{
-    "model": "my-model",
+    "model": "demo-nemo",
     "messages": [{"role": "user", "content": "Hello!"}]
   }'
 
 # Streaming
-curl http://localhost:3000/v1/chat/completions \
+curl http://localhost:3333/chat/completions \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <your-token>" \
   -d '{
-    "model": "my-model",
+    "model": "demo-nemo",
     "messages": [{"role": "user", "content": "Hello!"}],
     "stream": true
   }'
 ```
 
-## Customising
+## Customising Returns
+
+Currently the `Authorization` header value is passed in as `authorization`.
 
 Replace the `buildReply` function in `src/server.ts` with your own logic — call a local model, a database, another API, etc.

@@ -31,7 +31,7 @@ interface ChatCompletionRequest {
 // --- Helpers ---
 
 function buildReply(authorization?: string): string {
-  const token = authorization?.replace(/^Bearer\s+/i, "") ?? "(no token)";
+  const token = authorization ?? "(no token)";
   return `This is a demo response from demo-nemo. Your token: ${token}`;
 }
 
